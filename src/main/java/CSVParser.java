@@ -39,27 +39,31 @@ public class CSVParser {
         }
     }
 
-    //extract information from line, pass it to the send() method
+    //format line as a JSON object, pass it to the send() method
     private void processLine(String line) {
         //this will involve parsing and such later
-        send(line);
+        String[] tokens = line.split(",");
+        JSONObject obj = new JSONObject();
+        for(int i = 0; i < tokens.length; i++) {
+            obj.put(Integer.toString(i), tokens[i]);
+        }
+        send(obj);
     }
 
     //send the info to a server
-    private void send(String l) {
+    private void send(JSONObject json) {
         try {
-            URL url = new URL("http://" + serverName);
+            URL url = new URL(serverName);
             System.out.println(url);
             String charset = "UTF-8";
             URLConnection connection = url.openConnection();
-            String query = String.format("line=%s", URLEncoder.encode(l, charset));
 
             //POST request
             connection.setDoOutput(true);
-            connection.setRequestProperty("Accept-Charset", charset);
-            connection.setRequestProperty("Content-Type", "application/x-www-form-urlencoded;charset=" + charset);
+            connection.setRequestProperty("Accept", charset);
+            connection.setRequestProperty("Content-Type", "application/json" + charset);
             OutputStream output = connection.getOutputStream();
-            output.write(query.getBytes(charset));
+            output.write(json.toString().getBytes(charset));
 
             //Response
             InputStream response = connection.getInputStream();

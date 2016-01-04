@@ -9,3 +9,6 @@ task runApp(type: JavaExec){
     //arguments for the app - this is where the filename will go
     args 'cars.csv'
 }
+dependencies {
+    compile fileTree(dir: 'lib', include: '*.jar')
+}
