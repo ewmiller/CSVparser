@@ -7,5 +7,5 @@ task runApp(type: JavaExec){
     main = 'main.java.Main'
 
     //arguments for the app - this is where the filename will go
-    args 'hey'
+    args 'cars.csv'
 }
