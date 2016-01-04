@@ -17,6 +17,7 @@ repositories {
 dependencies {
     //compile local libraries in the lib/ directory
     compile fileTree(dir: 'lib', include: '*.jar')
+
     //compile remote library from a Maven repository
     compile group: 'net.sf.supercsv', name: 'super-csv', version: '2.4.0'
 }
