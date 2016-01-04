@@ -6,12 +6,18 @@ package main.java;
 public class CSVParser {
 
     String fileName;
+    String serverName;
 
-    public CSVParser(String fileName){
+
+    public CSVParser(String fileName, String serverName){
         this.fileName = fileName;
+        this.serverName = serverName;
     }
 
     public void output(){
         System.out.println(fileName);
+        System.out.println(serverName);
     }
+
+
 }
