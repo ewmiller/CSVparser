@@ -7,7 +7,7 @@ task runApp(type: JavaExec){
     main = 'main.java.Main'
 
     //arguments for the app - this is where the filename will go
-    args 'cars.csv'
+    args 'cars.csv', "http://send-me-stuff.herokuapp.com/"
 }
 dependencies {
     compile fileTree(dir: 'lib', include: '*.jar')

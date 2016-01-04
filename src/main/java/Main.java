@@ -1,11 +1,13 @@
 package main.java;
 
 /**
- * Created by Ethan on 1/4/16.
+ * Created by ewmiller on 1/4/16.
  */
 public class Main {
     public static void main(String[] args){
-        CSVParser parser = new CSVParser(args[0], "http://localhost:3000");
+
+        //args[0] is the filename, args[1] is the server to send results to
+        CSVParser parser = new CSVParser(args[0], args[1]);
         parser.process();
     }
 }

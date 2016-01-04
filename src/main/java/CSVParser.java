@@ -8,7 +8,7 @@ import org.json.simple.*;
 
 
 /**
- * Created by Ethan on 1/4/16.
+ * Created by ewmiller on 1/4/16.
  */
 public class CSVParser {
 
@@ -44,9 +44,10 @@ public class CSVParser {
         //this will involve parsing and such later
         String[] tokens = line.split(",");
         JSONObject obj = new JSONObject();
-        for(int i = 0; i < tokens.length; i++) {
-            obj.put(Integer.toString(i), tokens[i]);
-        }
+//        for(int i = 0; i < tokens.length; i++) {
+//            obj.put(Integer.toString(i), tokens[i]);
+//        }
+        obj.put("Year", tokens[0]);
         send(obj);
     }
 
