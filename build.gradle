@@ -9,6 +9,16 @@ task runApp(type: JavaExec){
     //arguments for the app - this is where the filename will go
     args 'cars.csv', "http://send-me-stuff.herokuapp.com/"
 }
-dependencies {
-    compile fileTree(dir: 'lib', include: '*.jar')
+
+repositories {
+    mavenCentral()
 }
+
+dependencies {
+    //compile local libraries in the lib/ directory
+    compile fileTree(dir: 'lib', include: '*.jar')
+    //compile remote library from a Maven repository
+    compile group: 'net.sf.supercsv', name: 'super-csv', version: '2.4.0'
+}
+
+//add external library for Super CSV
