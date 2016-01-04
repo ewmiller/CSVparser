@@ -44,10 +44,9 @@ public class CSVParser {
         //this will involve parsing and such later
         String[] tokens = line.split(",");
         JSONObject obj = new JSONObject();
-//        for(int i = 0; i < tokens.length; i++) {
-//            obj.put(Integer.toString(i), tokens[i]);
-//        }
-        obj.put("Year", tokens[0]);
+        for(int i = 0; i < tokens.length; i++) {
+            obj.put(Integer.toString(i), tokens[i]);
+        }
         send(obj);
     }
 
