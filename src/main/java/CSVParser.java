@@ -12,16 +12,11 @@ import org.json.simple.*;
  */
 public class CSVParser {
 
-    String fileName;
-    String serverName;
+    public CSVParser(){
 
-
-    public CSVParser(String fileName, String serverName){
-        this.fileName = fileName;
-        this.serverName = serverName;
     }
 
-    public void process(){
+    public void sendAsJSON(String fileName, String serverName){
         System.out.println(fileName);
         System.out.println(serverName);
 
@@ -31,7 +26,7 @@ public class CSVParser {
             BufferedReader br = new BufferedReader(new FileReader(file));
             String line;
             while((line = br.readLine()) != null){
-                processLine(line);
+                processLineToJSON(line, serverName);
             }
             br.close();
         } catch(IOException e){
@@ -40,21 +35,22 @@ public class CSVParser {
     }
 
     //format line as a JSON object, pass it to the send() method
-    private void processLine(String line) {
+    //uses json-simple library
+    private void processLineToJSON(String line, String serverName) {
         //this will involve parsing and such later
         String[] tokens = line.split(",");
+//        CsvListReader csvReader = new CsvListReader()
         JSONObject obj = new JSONObject();
         for(int i = 0; i < tokens.length; i++) {
             obj.put(Integer.toString(i), tokens[i]);
         }
-        send(obj);
+        sendJSON(obj, serverName);
     }
 
     //send the info to a server
-    private void send(JSONObject json) {
+    private void sendJSON(JSONObject json, String serverName) {
         try {
             URL url = new URL(serverName);
-            System.out.println(url);
             String charset = "UTF-8";
             URLConnection connection = url.openConnection();
 
