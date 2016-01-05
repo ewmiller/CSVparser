@@ -7,10 +7,12 @@ import org.supercsv.cellprocessor.*;
 import org.supercsv.cellprocessor.constraint.NotNull;
 
 import java.io.File;
+import java.io.FileOutputStream;
 import java.io.FileReader;
 import java.io.IOException;
 import java.nio.file.Path;
 import java.nio.file.Paths;
+import java.util.ArrayList;
 import java.util.List;
 
 
@@ -42,12 +44,28 @@ public class CSVParser2 {
             };
 
             List<Object> carList;
+            List<List> lineList = new ArrayList<>();
             while((carList = reader.read(processorz)) != null){
-                System.out.println(carList);
+                lineList.add(carList);
             }
+            System.out.println(lineList);
+            write(lineList);
 
         } catch(IOException e){
-            System.out.println(e);
+            System.out.println(e.toString());
+        }
+    }
+
+    private void write(List<List> lineList) {
+
+        try {
+            FileOutputStream out = new FileOutputStream(new File("./out.txt"));
+            for (List list : lineList) {
+                out.write(list.toString().getBytes());
+                out.write("\n".getBytes());
+            }
+        } catch(IOException e){
+            System.out.println(e.toString());
         }
     }
 }
